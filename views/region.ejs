@@ -1,0 +1,71 @@
+<%- include('header.ejs') %>
+
+<form class="search__form" action="#">
+  <div class="search_input">
+    <figure class="lupa_container">
+      <img class="lupa__icon" src="./lupa.png" alt="search" />
+    </figure>
+    <input
+      data-dark-element
+      type="search"
+      class="input searchs"
+      name="search_country"
+      id="search_country"
+      placeholder="Search for a country..."
+    />
+  </div>
+  <select
+    data-dark-element
+    class="input select"
+    name="search__selected"
+    id="search__selected"
+  >
+    <option class="options" selected>Filter by Region</option>
+    <option class="options" value="Africa">Africa</option>
+    <option class="options" value="America">America</option>
+    <option class="options" value="Asia">Asia</option>
+    <option class="options" value="Europe">Europe</option>
+    <option class="options" value="Oceania">Oceania</option>
+  </select>
+</form>
+
+<section class="cards container">
+  <% countries.forEach(country => { %>
+
+  <!-- <h1><%= country.name.common %></h1> -->
+
+  <article class="card">
+    <a class="card__link" href="/more/<%= country.name.common %>">
+      <figure class="card__figure">
+        <img
+          class="card__img"
+          src="<%= country.flags.svg %>"
+          alt="flag__country"
+        />
+      </figure>
+
+      <section class="card__texts">
+        <h3 class="card__title"><%= country.name.common %></h3>
+
+        <h4 class="card__bold">
+          Populacion:
+          <span class="card__populacion card__result"><%= country.population %></span>
+        </h4>
+        <h4 class="card__bold">
+          Region:
+          <span class="card__Region card__result"><%= country.region %></span>
+        </h4>
+        <h4 class="card__bold">
+          Capital:
+          <span class="card__capital card__result"><%= country.capital %></span>
+        </h4>
+      </section>
+    </a>
+  </article>
+
+    <% 
+}) 
+    %>
+</section>
+
+<%- include('footer.ejs') %>

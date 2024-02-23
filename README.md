@@ -3,6 +3,8 @@
 
 ### 1.0.0 - First Version with Bug
 - Description: Initial release no working select and search.
+### 2.0.0 - Second Version - Form
+- Description: Now the form working 
 
 # Frontend Mentor - REST Countries API with color theme switcher
 

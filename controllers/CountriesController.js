@@ -11,39 +11,77 @@ const getallCountries =(req,res)=>{
 
     })
     .catch(err=>{
-        console.log(err)
-    })
-    
+        const errortext= err.response.statusText || "ocurrio un error",
+        code = err.response.status;
 
+        res.render('error',{ errortext, code})
+    })
 }
 
 const moreaboutcountry = (req,res)=>{
 
     const country = req.params.country;
-    // console.log(country)
-
-    // console.log(`${url.SEARCH}${country}`)
-
     const urlsearch=`${url.SEARCH}${country}`
 
     axios.get(urlsearch)
     .then(response=>{
-       
         const more = response.data;
-        
-           console.log(more[0].name.common)
-
         res.render('more_about_country',{more})
 
+    }).catch(err=>
+    {
+        const errortext= err.response.statusText || "ocurrio un error",
+            code = err.response.status;
+
+        res.render('error',{ errortext, code})
     })
+}
+
+const getRegion = (req,res)=>{
     
-    .catch(err=>{
-        console.log(err)
+    const {region} = req.query;
+    const urlregion =`${url.REGION}${region}` ;
+    
+    axios.get(urlregion)
+    .then(response=>{
+
+        const countries=response.data;      
+        res.render('region',{ countries })
+
     })
 
+    .catch(err=>{
+       
+        const errortext= err.response.statusText || "ocurrio un error",
+            code = err.response.status;
+
+        res.render('error',{ errortext, code})
+    })
+}
+
+const getSearch= (req,res)=>{
+    
+    const {search} = req.query;
+    const urlsearch =`${url.SEARCH}${search}` ;
+    
+    axios.get(urlsearch)
+    .then(response=>{
+
+        const countries=response.data;
+        res.render('search',{ countries })
+
+    })
+    .catch(err=>{
+       
+        const errortext= err.response.statusText || "ocurrio un error",
+            code = err.response.status;
+        res.render('error',{ errortext, code})
+    })
 }
 
 export default{
     getallCountries,
-    moreaboutcountry
+    moreaboutcountry,
+    getRegion,
+    getSearch
 }

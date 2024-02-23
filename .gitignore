@@ -1,0 +1,3 @@
+git remote add origin https://github.com/Said-Meza/NODE_REST-Countries-API-with-color-theme-.git
+git branch -M main
+git push -u origin main
