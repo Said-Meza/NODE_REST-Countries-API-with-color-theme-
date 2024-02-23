@@ -1,0 +1,104 @@
+<%- include('header.ejs') %>
+
+<main data-dark-background class="main">
+
+    <a  data-dark-element class=" botton container" 
+    href="/"> <span class="arrow">⬅ </span> Back</a>
+
+
+    
+<section data-dark-background class="content_container container">
+
+    <figure class="content__figure">
+      <img class="content__img" src="<%= more[0].flags.svg%>" alt="flag__country" />
+    </figure>
+
+    <section class="content__texts">
+      <h2 class="card__title" id="country"><%= more[0].name.common%></h2>
+
+      <section class="content content1">
+        <h4 class="card__bold">Native Name:
+          <span class="card__result name"><%= more[0].name.official%></span>
+        </h4>
+        <h4 class="card__bold">
+          Populacion: <span class="card__result population"> <%= more[0].population%></span>
+        </h4>
+        <h4 class="card__bold">
+          Region: <span class="card__result region"><%= more[0].region%> </span>
+        </h4>
+        <h4 class="card__bold">
+          Sub Region: <span class="card__result subregion"><%= more[0].subregion%></span>
+        </h4>
+        <h4 class="card__bold">
+          Capital: <span class="card__result capital"><%= more[0].capital%> </span>
+        </h4>
+      </section>
+
+      <section class="content content2">
+        <h4 class="card__bold">
+          Top Level Domain: <span class="card__result domain"> <%= more[0].tld%></span>
+        </h4>
+          <% 
+          let dinero = more[0].currencies,cadena="";
+            for (const clave in dinero) {
+                    if (dinero.hasOwnProperty(clave)) {
+                            cadena = clave
+                    }
+                }
+          %>
+        <h4 class="card__bold">
+          Currencies: <span class="card__result currencies"><%= more[0].currencies[`${cadena}`].name %></span>
+        </h4>
+        <% 
+        let lenguas= more[0].languages,lengua=[],idiomas="";
+          for (const clave in lenguas) {
+                    if (lenguas.hasOwnProperty(clave)) {
+                            lengua.push(clave) 
+                    }
+                }
+
+                for (let i = 0; i < lengua.length; i++) {
+                    idiomas += " " +more[0].languages[`${lengua[i]}`] ;
+                }
+        %>
+        <h4 class="card__bold">
+          Languages: <span class="card__result languaje"><%= idiomas%></span>
+        </h4>
+      </section>
+
+      <section class="content content3">
+        <h3 class="card__bold"> Border Contries: </h3>
+
+        <div class="other__container">
+
+          <% let longitud = more[0].borders  %>
+
+          <% if (longitud){ 
+              for (let i = 0; i < longitud.length; i++) 
+                    {
+            %>
+            <h5 class="botton botton--modifi" ><%= more[0].borders[i] %> </h5>
+          <% }
+            } else {%>
+            <h5 class="morepaises">No has Border Contries</h5>
+          <% }  %>
+           
+         
+          
+          
+        </div>
+      </section>
+
+    </section>
+  
+</section>
+
+
+
+
+
+
+
+</main>
+
+<%- include('footer.ejs') %>
